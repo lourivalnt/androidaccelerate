@@ -3,11 +3,9 @@ package br.com.androidpro.tupicionario;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class CulinariaActivity extends AppCompatActivity {
 
@@ -17,13 +15,9 @@ public class CulinariaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_culinaria);
 
         String[] culinariaArray = getResources().getStringArray(R.array.culinaria);
-        List<String> culinariaList = Arrays.asList(culinariaArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, culinariaArray);
 
-        LinearLayout root = (LinearLayout) findViewById(R.id.rootCulinaria);
-        for (String bicho : culinariaList) {
-            TextView textView = new TextView(this);
-            textView.setText(bicho);
-            root.addView(textView);
-        }
+        ListView listView = (ListView) findViewById(R.id.rootCulinaria);
+        listView.setAdapter(adapter);
     }
 }
